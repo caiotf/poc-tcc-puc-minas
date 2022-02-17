@@ -1,4 +1,7 @@
+using AutoMapper;
+using GSL.ProductAPI.Config;
 using GSL.ProductAPI.Model.Context;
+using GSL.ProductAPI.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace GSL.ProductAPI
 {
@@ -24,6 +28,12 @@ namespace GSL.ProductAPI
             var connection = Configuration["SqlServerConnection:SqlServerConnectionString"];
 
             services.AddDbContext<SqlServerContext>(options => options.UseSqlServer(connection));
+
+            IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

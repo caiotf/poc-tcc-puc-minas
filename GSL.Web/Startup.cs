@@ -1,12 +1,11 @@
+using GSL.Web.Services;
+using GSL.Web.Services.IServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GSL.Web
 {
@@ -22,6 +21,9 @@ namespace GSL.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient<IProductService, ProductService>(c =>
+                c.BaseAddress = new Uri(Configuration["ServiveUrls:ProductAPI"]));
+
             services.AddControllersWithViews();
         }
 
