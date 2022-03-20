@@ -1,5 +1,6 @@
 ﻿using GSL.ProductAPI.Data.ValueObjects;
 using GSL.ProductAPI.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace GSL.ProductAPI.Controllers
                 ArgumentNullException(nameof(repository));
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductVO>>> FindAll()
         {
