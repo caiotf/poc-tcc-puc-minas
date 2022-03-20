@@ -25,7 +25,6 @@ namespace GSL.Web.Controllers
         {
             return View();
 
-            //Teste retornado outra view
             //var products = await _productService.FindAllProducts();
             //return View("ProductIndex", products);
         }

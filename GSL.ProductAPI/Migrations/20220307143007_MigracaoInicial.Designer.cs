@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GSL.ProductAPI.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20220217213722_SeedProductDataTable")]
-    partial class SeedProductDataTable
+    [Migration("20220307143007_MigracaoInicial")]
+    partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
