@@ -1,5 +1,7 @@
 ﻿using GSL.Web.Models;
 using GSL.Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication;
+
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -17,24 +19,25 @@ namespace GSL.Web.Controllers
 
         public async Task<IActionResult> ProductIndex()
         {
-            var products = await _productService.FindAllProducts();
+            string accToken = HttpContext.GetTokenAsync("access_token").Result;
+
+            var products = await _productService.FindAllProducts(accToken);
             return View(products);
         }
 
         public async Task<IActionResult> ProductCreate()
         {
             return View();
-
-            //var products = await _productService.FindAllProducts();
-            //return View("ProductIndex", products);
         }
 
         [HttpPost]
         public async Task<IActionResult> ProductCreate(ProductModel model)
         {
+            string accToken = HttpContext.GetTokenAsync("access_token").Result;
+
             if (ModelState.IsValid)
             {
-                var response = await _productService.CreateProduct(model);
+                var response = await _productService.CreateProduct(model, accToken);
                 if (response != null) return RedirectToAction(
                      nameof(ProductIndex));
             }
@@ -43,7 +46,9 @@ namespace GSL.Web.Controllers
 
         public async Task<IActionResult> ProductUpdate(int id)
         {
-            var model = await _productService.FindProductById(id);
+            string accToken = HttpContext.GetTokenAsync("access_token").Result;
+
+            var model = await _productService.FindProductById(id, accToken);
             if (model != null) return View(model);
             return NotFound();
         }
@@ -51,9 +56,11 @@ namespace GSL.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ProductUpdate(ProductModel model)
         {
+            string accToken = HttpContext.GetTokenAsync("access_token").Result;
+
             if (ModelState.IsValid)
             {
-                var response = await _productService.UpdateProduct(model);
+                var response = await _productService.UpdateProduct(model, accToken);
                 if (response != null) return RedirectToAction(
                      nameof(ProductIndex));
             }
@@ -62,7 +69,9 @@ namespace GSL.Web.Controllers
 
         public async Task<IActionResult> ProductDelete(int id)
         {
-            var model = await _productService.FindProductById(id);
+            string accToken = HttpContext.GetTokenAsync("access_token").Result;
+
+            var model = await _productService.FindProductById(id, accToken);
             if (model != null) return View(model);
             return NotFound();
         }
@@ -70,7 +79,9 @@ namespace GSL.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ProductDelete(ProductModel model)
         {
-            var response = await _productService.DeleteProductById(model.Id);
+            string accToken = HttpContext.GetTokenAsync("access_token").Result;
+
+            var response = await _productService.DeleteProductById(model.Id, accToken);
             if (response) return RedirectToAction(
                     nameof(ProductIndex));
             return View(model);
