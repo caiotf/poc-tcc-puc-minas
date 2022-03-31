@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSL.Web", "GSL.Web\GSL.Web.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSL.ProductAPI", "GSL.ProductAPI\GSL.ProductAPI.csproj", "{CC171F14-0DF4-4209-81E3-8092C77B2C89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSL.RatingAPI", "GSL.RatingAPI\GSL.RatingAPI.csproj", "{A33940ED-1E8C-4D55-936D-9AF56874A88A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{CC171F14-0DF4-4209-81E3-8092C77B2C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC171F14-0DF4-4209-81E3-8092C77B2C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC171F14-0DF4-4209-81E3-8092C77B2C89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A33940ED-1E8C-4D55-936D-9AF56874A88A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A33940ED-1E8C-4D55-936D-9AF56874A88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A33940ED-1E8C-4D55-936D-9AF56874A88A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A33940ED-1E8C-4D55-936D-9AF56874A88A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E25A8AC9-B741-4F5D-8F5E-8F3BBBE6B67A} = {6F776CE6-3B5E-4B7E-8CDB-0D42B90345F4}
 		{CC171F14-0DF4-4209-81E3-8092C77B2C89} = {D5FF6761-8AE0-46E7-8C3A-23FE3EFA7E10}
+		{A33940ED-1E8C-4D55-936D-9AF56874A88A} = {D5FF6761-8AE0-46E7-8C3A-23FE3EFA7E10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9B783509-F1E2-46D8-8106-B6F5F1857D8C}
