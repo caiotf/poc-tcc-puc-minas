@@ -26,11 +26,6 @@
                 @Html.DropDownList("CuidadoComMercadoria", Html.GetEnumSelectList<ERating>(), "Selecione...",new { @class = "form-control", @style="margin-top: 3px;" })
                 <span asp-validation-for="CuidadoComMercadoria" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Transparencia" class="control-label" style="margin-top: 10px;">Tranparência</label>
-                @Html.DropDownList("Transparencia", Html.GetEnumSelectList<ERating>(), "Selecione...",new { @class = "form-control", @style="margin-top: 3px;" })
-                <span asp-validation-for="Transparencia" class="text-danger"></span>
-            </div>
             <div class="form-group" style="margin-top: 20px;">
                 <input type="submit" value="Create" class="btn btn-primary form-control" />
             </div>

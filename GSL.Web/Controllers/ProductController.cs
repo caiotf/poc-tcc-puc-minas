@@ -1,6 +1,8 @@
 ﻿using GSL.Web.Models;
 using GSL.Web.Services.IServices;
+using GSL.Web.Utils;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -19,6 +21,12 @@ namespace GSL.Web.Controllers
         public async Task<IActionResult> ProductIndex()
         {
             string accToken = HttpContext.GetTokenAsync("access_token").Result;
+            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
+
+            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
+            {
+                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
+            }
 
             var products = await _productService.FindAllProducts(accToken);
             return View(products);

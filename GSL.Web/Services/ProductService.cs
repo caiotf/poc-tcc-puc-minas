@@ -3,6 +3,7 @@ using GSL.Web.Services.IServices;
 using GSL.Web.Utils;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace GSL.Web.Services
 
         public async Task<IEnumerable<ProductModel>> FindAllProducts(string token)
         {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.GetAsync(BasePath);
             return await response.ReadContentAs<List<ProductModel>>();

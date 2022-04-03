@@ -46,16 +46,16 @@
                 @Html.DisplayFor(modelItem => item.CuidadoComMercadoria)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Transparencia)
-            </td>
-            <td>
                 @Convert.ToDateTime(item.DataAvalicao).ToString("dd/MM/yyyy HH:mm")
             </td>
-            <td>
-                <a asp-action="RatingUpdate" class="btn btn-success">
-                    <i class="fas fa-edit"></i>
-                </a>
-            </td>
+            @if (!User.HasClaim("user_roles", "apiAdmin"))
+            {
+                <td>
+                    <a asp-action="RatingUpdate" class="btn btn-success">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+            }
         </tr>
 }
     </tbody>

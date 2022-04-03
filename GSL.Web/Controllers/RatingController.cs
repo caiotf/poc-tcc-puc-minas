@@ -1,6 +1,8 @@
 ﻿using GSL.Web.Models;
 using GSL.Web.Services.IServices;
+using GSL.Web.Utils;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -21,9 +23,21 @@ namespace GSL.Web.Controllers
         public async Task<IActionResult> RatingIndex()
         {
             string accToken = HttpContext.GetTokenAsync("access_token").Result;
+            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
+
+            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
+            {
+                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
+            }
+
+            var rating = await _ratingService.FindAllRatings();
+
+            if (User.HasClaim("user_roles", "apiAdmin"))
+            {
+                return View(rating);
+            }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var rating = await _ratingService.FindAllRatings();
             var ratingUser = rating.Where(w => w.UserId == userId);
 
             if (ratingUser == null || !ratingUser.Any())

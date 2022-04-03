@@ -7,7 +7,6 @@ namespace GSL.Web.Models
     {
         public int Id { get; set; }
         public ERating AgilidadeNaEntrega { get; set; }
-        public ERating Transparencia { get; set; }
         public ERating BoaComunicacao { get; set; }
         public ERating CuidadoComMercadoria { get; set; }
         public DateTime DataAvalicao { get; set; }

@@ -10,8 +10,6 @@ namespace GSL.RatingAPI.Model
         [Required]
         public ERating AgilidadeNaEntrega { get; set; }
         [Required]
-        public ERating Transparencia { get; set; }
-        [Required]
         public ERating BoaComunicacao { get; set; }
         [Required]
         public ERating CuidadoComMercadoria { get; set; }
