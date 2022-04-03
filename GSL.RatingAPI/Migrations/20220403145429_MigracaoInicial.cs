@@ -10,17 +10,17 @@ namespace GSL.RatingAPI.Migrations
                 name: "Ratings",
                 columns: table => new
                 {
-                    id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AgilidadeNaEntrega = table.Column<int>(type: "int", nullable: false),
                     Transparencia = table.Column<int>(type: "int", nullable: false),
                     BoaComunicacao = table.Column<int>(type: "int", nullable: false),
                     CuidadoComMercadoria = table.Column<int>(type: "int", nullable: false),
-                    IdUser = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ratings", x => x.id);
+                    table.PrimaryKey("PK_Ratings", x => x.Id);
                 });
         }
 

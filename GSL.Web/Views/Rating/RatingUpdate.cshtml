@@ -1,0 +1,50 @@
+﻿@model GSL.Web.Models.RatingModel
+@using GSL.Web.Enuns
+
+@{
+    ViewData["Title"] = "RatingUpdate";
+}
+
+<h1>RatingUpdate</h1>
+
+<h4>RatingModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RatingUpdate">
+            <input asp-for="Id" hidden>
+            <input asp-for="UserId" hidden>
+            <input asp-for="UserEmail" hidden>
+            <input asp-for="UserName" hidden>
+            <br/>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AgilidadeNaEntrega" class="control-label">Agilidade na entrega</label>
+                @Html.DropDownList("AgilidadeNaEntrega", Html.GetEnumSelectList<ERating>(),new { @class = "form-control", @style="margin-top: 3px;"})
+                <span asp-validation-for="AgilidadeNaEntrega" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoaComunicacao" class="control-label" style="margin-top: 10px;">Comunicação</label>
+                @Html.DropDownList("BoaComunicacao", Html.GetEnumSelectList<ERating>(),new { @class = "form-control", @style="margin-top: 3px;" })
+                <span asp-validation-for="BoaComunicacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CuidadoComMercadoria" class="control-label" style="margin-top: 10px;">Cuidado com a mercadoria</label>
+                @Html.DropDownList("CuidadoComMercadoria", Html.GetEnumSelectList<ERating>(),new { @class = "form-control", @style="margin-top: 3px;" })
+                <span asp-validation-for="CuidadoComMercadoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transparencia" class="control-label" style="margin-top: 10px;">Tranparência</label>
+                @Html.DropDownList("Transparencia", Html.GetEnumSelectList<ERating>(),new { @class = "form-control", @style="margin-top: 3px;" })
+                <span asp-validation-for="Transparencia" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <input type="submit" value="Update" class="btn btn-success form-control" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

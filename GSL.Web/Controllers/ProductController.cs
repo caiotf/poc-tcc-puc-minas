@@ -1,7 +1,6 @@
 ﻿using GSL.Web.Models;
 using GSL.Web.Services.IServices;
 using Microsoft.AspNetCore.Authentication;
-
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

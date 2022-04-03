@@ -1,9 +1,9 @@
-﻿using GSL.RatingAPI.Enuns;
+﻿using GSL.Web.Enuns;
 using System;
 
-namespace GSL.RatingAPI.Data.ValueObjects
+namespace GSL.Web.Models
 {
-    public class RatingVO
+    public class RatingModel
     {
         public int Id { get; set; }
         public ERating AgilidadeNaEntrega { get; set; }

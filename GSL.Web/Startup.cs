@@ -27,7 +27,11 @@ namespace GSL.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient<IProductService, ProductService>(c =>
-                c.BaseAddress = new Uri(Configuration["ServiveUrls:ProductAPI"]));
+                    c.BaseAddress = new Uri(Configuration["ServiceUrls:ProductAPI"])
+                );
+            services.AddHttpClient<IRatingService, RatingService>(c =>
+                    c.BaseAddress = new Uri(Configuration["ServiceUrls:RatingAPI"])
+                );
 
             services.AddControllersWithViews();
 
@@ -101,7 +105,7 @@ namespace GSL.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

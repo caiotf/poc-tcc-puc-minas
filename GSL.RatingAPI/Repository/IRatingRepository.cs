@@ -8,5 +8,7 @@ namespace GSL.RatingAPI.Repository
     {
         Task<IEnumerable<RatingVO>> FindAll();
         Task<RatingVO> Create(RatingVO vo);
+        Task<RatingVO> FindById(string userId);
+        Task<RatingVO> Update(RatingVO vo);
     }
 }

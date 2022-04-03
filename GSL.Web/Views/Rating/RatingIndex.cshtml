@@ -1,0 +1,62 @@
+﻿@model IEnumerable<GSL.Web.Models.RatingModel>
+
+@{
+    ViewData["Title"] = "RatingList";
+}
+
+<h1>Avaliação GSL</h1>
+
+<table class="table" style="margin-top: 30px;">
+    <thead>
+        <tr>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Agilidade na entrega
+            </th>
+            <th>
+                Comunicação
+            </th>
+            <th>
+                Cuidado com a mercadoria
+            </th>
+            <th>
+                Transparência
+            </th>
+            <th>
+                Data da Avaliação
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgilidadeNaEntrega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoaComunicacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CuidadoComMercadoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Transparencia)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.DataAvalicao).ToString("dd/MM/yyyy HH:mm")
+            </td>
+            <td>
+                <a asp-action="RatingUpdate" class="btn btn-success">
+                    <i class="fas fa-edit"></i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
