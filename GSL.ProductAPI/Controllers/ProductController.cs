@@ -22,7 +22,7 @@ namespace GSL.ProductAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "ApiUser")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<ProductVO>>> FindAll()
         {
             var products = await _repository.FindAll();
@@ -30,7 +30,7 @@ namespace GSL.ProductAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Policy = "ApiUser")]
+        [AllowAnonymous]
         public async Task<ActionResult<ProductVO>> FindById(long id)
         {
             var product = await _repository.FindById(id);

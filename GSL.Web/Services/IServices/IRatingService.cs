@@ -6,9 +6,9 @@ namespace GSL.Web.Services.IServices
 {
     public interface IRatingService
     {
-        Task<IEnumerable<RatingModel>> FindAllRatings();
-        Task<RatingModel> CreateRating(RatingModel model);
-        Task<RatingModel> FindRatingByUserId(string userId);
-        Task<RatingModel> UpdateRating(RatingModel model);
+        Task<IEnumerable<RatingModel>> FindAllRatings(string token);
+        Task<RatingModel> CreateRating(RatingModel model, string token);
+        Task<RatingModel> FindRatingByUserId(string userId, string token);
+        Task<RatingModel> UpdateRating(RatingModel model, string token);
     }
 }

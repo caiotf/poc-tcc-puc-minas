@@ -30,7 +30,7 @@ namespace GSL.Web.Controllers
                 return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
             }
 
-            var rating = await _ratingService.FindAllRatings();
+            var rating = await _ratingService.FindAllRatings(accToken);
 
             if (User.HasClaim("user_roles", "apiAdmin"))
             {
@@ -71,7 +71,7 @@ namespace GSL.Web.Controllers
                 model.UserEmail = userEmail;
                 model.DataAvalicao = DateTime.Now;
 
-                var response = await _ratingService.CreateRating(model);
+                var response = await _ratingService.CreateRating(model, accToken);
                 if (response != null) return RedirectToAction(
                      nameof(RatingIndex));
             }
@@ -84,7 +84,7 @@ namespace GSL.Web.Controllers
 
             string accToken = HttpContext.GetTokenAsync("access_token").Result;
 
-            var model = await _ratingService.FindRatingByUserId(userId);
+            var model = await _ratingService.FindRatingByUserId(userId, accToken);
             if (model != null) return View(model);
             return NotFound();
         }
@@ -97,7 +97,7 @@ namespace GSL.Web.Controllers
             if (ModelState.IsValid)
             {
                 model.DataAvalicao = DateTime.Now;
-                var response = await _ratingService.UpdateRating(model);
+                var response = await _ratingService.UpdateRating(model, accToken);
                 if (response != null) return RedirectToAction(
                      nameof(RatingIndex));
             }

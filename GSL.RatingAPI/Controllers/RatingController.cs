@@ -1,5 +1,6 @@
 ﻿using GSL.RatingAPI.Data.ValueObjects;
 using GSL.RatingAPI.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace GSL.RatingAPI.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Policy = "ApiUser")]
+        [Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<IEnumerable<RatingVO>>> FindAll()
         {
             var rating = await _repository.FindAll();
@@ -28,7 +29,7 @@ namespace GSL.RatingAPI.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "ApiAdmin")]
+        [Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<RatingVO>> Create([FromBody] RatingVO vo)
         {
             if (vo == null) return BadRequest();
@@ -37,7 +38,7 @@ namespace GSL.RatingAPI.Controllers
         }
 
         [HttpGet("{userId}")]
-        //[Authorize(Policy = "ApiUser")]
+        [Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<RatingVO>> FindById(string userId)
         {
             var rating = await _repository.FindById(userId);
@@ -46,12 +47,12 @@ namespace GSL.RatingAPI.Controllers
         }
 
         [HttpPut]
-        //[Authorize(Policy = "ApiAdmin")]
+        [Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<RatingVO>> Update([FromBody] RatingVO vo)
         {
             if (vo == null) return BadRequest();
-            var product = await _repository.Update(vo);
-            return Ok(product);
+            var rating = await _repository.Update(vo);
+            return Ok(rating);
         }
     }
 }

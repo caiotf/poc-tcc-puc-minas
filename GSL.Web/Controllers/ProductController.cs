@@ -20,15 +20,7 @@ namespace GSL.Web.Controllers
 
         public async Task<IActionResult> ProductIndex()
         {
-            string accToken = HttpContext.GetTokenAsync("access_token").Result;
-            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
-
-            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
-            {
-                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
-            }
-
-            var products = await _productService.FindAllProducts(accToken);
+            var products = await _productService.FindAllProducts();
             return View(products);
         }
 
@@ -41,6 +33,12 @@ namespace GSL.Web.Controllers
         public async Task<IActionResult> ProductCreate(ProductModel model)
         {
             string accToken = HttpContext.GetTokenAsync("access_token").Result;
+            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
+
+            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
+            {
+                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
+            }
 
             if (ModelState.IsValid)
             {
@@ -54,8 +52,14 @@ namespace GSL.Web.Controllers
         public async Task<IActionResult> ProductUpdate(int id)
         {
             string accToken = HttpContext.GetTokenAsync("access_token").Result;
+            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
 
-            var model = await _productService.FindProductById(id, accToken);
+            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
+            {
+                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
+            }
+
+            var model = await _productService.FindProductById(id);
             if (model != null) return View(model);
             return NotFound();
         }
@@ -64,6 +68,12 @@ namespace GSL.Web.Controllers
         public async Task<IActionResult> ProductUpdate(ProductModel model)
         {
             string accToken = HttpContext.GetTokenAsync("access_token").Result;
+            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
+
+            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
+            {
+                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
+            }
 
             if (ModelState.IsValid)
             {
@@ -77,8 +87,14 @@ namespace GSL.Web.Controllers
         public async Task<IActionResult> ProductDelete(int id)
         {
             string accToken = HttpContext.GetTokenAsync("access_token").Result;
+            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
 
-            var model = await _productService.FindProductById(id, accToken);
+            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
+            {
+                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
+            }
+
+            var model = await _productService.FindProductById(id);
             if (model != null) return View(model);
             return NotFound();
         }
@@ -87,6 +103,12 @@ namespace GSL.Web.Controllers
         public async Task<IActionResult> ProductDelete(ProductModel model)
         {
             string accToken = HttpContext.GetTokenAsync("access_token").Result;
+            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
+
+            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
+            {
+                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
+            }
 
             var response = await _productService.DeleteProductById(model.Id, accToken);
             if (response) return RedirectToAction(
