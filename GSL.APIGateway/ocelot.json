@@ -1,6 +1,7 @@
 {
   "Routes": [
     {
+      "SwaggerKey": "product",
       "DownstreamPathTemplate": "/api/v1/product",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -12,6 +13,18 @@
       "UpstreamPathTemplate": "/gateway/product",
       "UpstreamHttpMethod": [ "GET" ]
     }
-    
+
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "product",
+      "Config": [
+        {
+          "Name": "Product API",
+          "Version": "v1",
+          "Url": "http://localhost:24989/swagger/v1/swagger.json"
+        }
+      ]
+    }
   ]
 }
