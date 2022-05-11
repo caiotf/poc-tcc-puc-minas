@@ -24,13 +24,19 @@
         <thead>
             <tr>
                 <th>
-                    Name
+                    Cliente
                 </th>
                 <th>
-                    Category
+                    Produto
                 </th>
                 <th>
-                    Price
+                    Categoria
+                </th>
+                <th>
+                    Preço
+                </th>
+                <th>
+                    Estoque
                 </th>
             </tr>
         </thead>
@@ -39,6 +45,9 @@
             {
                 <tr>
                     <td>
+                        @item.Customer
+                    </td>
+                    <td>
                         @item.Name
                     </td>
                     <td>
@@ -46,6 +55,9 @@
                     </td>
                     <td>
                         @((item.Price).ToString("c"))
+                    </td>
+                    <td>
+                        @item.Stock
                     </td>
                     <td>
                         @if (User.HasClaim("user_roles", "apiAdmin"))

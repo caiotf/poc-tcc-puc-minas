@@ -28,5 +28,14 @@ namespace GSL.ProductAPI.Model
         [Column("image_url")]
         [StringLength(300)]
         public string ImageURL { get; set; }
+
+        [Column("customer")]
+        [Required]
+        [StringLength(150)]
+        public string Customer { get; set; }
+
+        [Column("stock")]
+        [Required]
+        public int Stock { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GSL.Web.Controllers
@@ -21,7 +22,15 @@ namespace GSL.Web.Controllers
         public async Task<IActionResult> ProductIndex()
         {
             var products = await _productService.FindAllProducts();
-            return View(products);
+
+            if (User.HasClaim("user_roles", "apiAdmin"))
+            {
+                return View(products);
+            }
+
+            var productsCustomer = products.Where(w => w.Customer == User.Identity.Name);
+
+            return View(productsCustomer);
         }
 
         public async Task<IActionResult> ProductCreate()
