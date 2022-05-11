@@ -11,7 +11,47 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/product",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "SwaggerKey": "product",
+      "DownstreamPathTemplate": "/api/v1/product/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 24989
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ]
+    },
+
+    {
+      "SwaggerKey": "rating",
+      "DownstreamPathTemplate": "/api/v1/rating",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 36219
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/rating",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+    },
+    {
+      "SwaggerKey": "rating",
+      "DownstreamPathTemplate": "/api/v1/rating/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 36219
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/rating/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
 
   ],
@@ -20,9 +60,19 @@
       "Key": "product",
       "Config": [
         {
-          "Name": "Product API",
+          "Name": "Gateway - Product API",
           "Version": "v1",
           "Url": "http://localhost:24989/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "rating",
+      "Config": [
+        {
+          "Name": "Gateway - Rating API",
+          "Version": "v1",
+          "Url": "http://localhost:36219/swagger/v1/swagger.json"
         }
       ]
     }
