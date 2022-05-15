@@ -1,4 +1,21 @@
-﻿@model GSL.Web.Models.ProductModel
+﻿@using GSL.Web.Enuns
+@model GSL.Web.Models.ProductModel
+
+
+@*Dummy*@
+@{    
+    var categories = new List<SelectListItem>();
+    categories.Add(new SelectListItem() { Text = "Eletro" });
+    categories.Add(new SelectListItem() { Text = "Moveis" });
+    categories.Add(new SelectListItem() { Text = "Telefonia" });
+}
+
+@{    
+    var customers = new List<SelectListItem>();
+    customers.Add(new SelectListItem() { Text = "Alfa" });
+    customers.Add(new SelectListItem() { Text = "Beta" });
+    customers.Add(new SelectListItem() { Text = "Delta" });
+}
 
 <form asp-action="ProductCreate">
     <br/>
@@ -20,7 +37,7 @@
                 <label asp-for="CategoryName" class="control-label pt-2" style="font-size:20px;">Categoria</label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="CategoryName" class="form-control" />
+                @Html.DropDownList("CategoryName", categories, "Selecione...",new { @class = "form-control", @style="margin-top: 3px;" })
                 <span asp-validation-for="CategoryName" class="text-danger"></span>
             </div>
             <div class="col-2">
@@ -34,7 +51,7 @@
                 <label asp-for="Customer" class="control-label pt-2" style="font-size:20px;">Cliente</label>
             </div>
             <div class="col-10 pb-3">
-                <input asp-for="Customer" class="form-control" />
+                @Html.DropDownList("Customer", customers, "Selecione...",new { @class = "form-control", @style="margin-top: 3px;" })
                 <span asp-validation-for="Customer" class="text-danger"></span>
             </div>
             <div class="col-2">

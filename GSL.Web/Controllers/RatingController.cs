@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -32,20 +31,7 @@ namespace GSL.Web.Controllers
 
             var rating = await _ratingService.FindAllRatings(accToken);
 
-            if (User.HasClaim("user_roles", "apiAdmin"))
-            {
-                return View(rating);
-            }
-
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var ratingUser = rating.Where(w => w.UserId == userId);
-
-            if (ratingUser == null || !ratingUser.Any())
-            {
-                return RedirectToAction("RatingCreate");
-            }
-
-            return View(ratingUser);
+            return View(rating);
         }
 
         public async Task<IActionResult> RatingCreate()

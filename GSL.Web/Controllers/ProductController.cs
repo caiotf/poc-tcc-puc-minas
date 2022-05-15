@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GSL.Web.Controllers
@@ -21,16 +20,16 @@ namespace GSL.Web.Controllers
 
         public async Task<IActionResult> ProductIndex()
         {
-            var products = await _productService.FindAllProducts();
+            string accToken = HttpContext.GetTokenAsync("access_token").Result;
+            var isExpiredToken = AccToken.IsExpiredAccToken(accToken);
 
-            if (User.HasClaim("user_roles", "apiAdmin"))
+            if (!HttpContext.User.Identity.IsAuthenticated || isExpiredToken)
             {
-                return View(products);
+                return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
             }
 
-            var productsCustomer = products.Where(w => w.Customer == User.Identity.Name);
-
-            return View(productsCustomer);
+            var products = await _productService.FindAllProducts(accToken);
+            return View(products);
         }
 
         public async Task<IActionResult> ProductCreate()
@@ -68,7 +67,7 @@ namespace GSL.Web.Controllers
                 return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
             }
 
-            var model = await _productService.FindProductById(id);
+            var model = await _productService.FindProductById(id, accToken);
             if (model != null) return View(model);
             return NotFound();
         }
@@ -103,7 +102,7 @@ namespace GSL.Web.Controllers
                 return Challenge(OpenIdConnectDefaults.AuthenticationScheme);
             }
 
-            var model = await _productService.FindProductById(id);
+            var model = await _productService.FindProductById(id, accToken);
             if (model != null) return View(model);
             return NotFound();
         }
