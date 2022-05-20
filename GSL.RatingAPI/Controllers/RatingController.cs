@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GSL.RatingAPI.Controllers
@@ -23,20 +21,20 @@ namespace GSL.RatingAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "ApiUser")]
+        //[Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<IEnumerable<RatingVO>>> FindAll()
         {
             var rating = await _repository.FindAll();
 
-            if (User.HasClaim("user_roles", "apiAdmin"))
-            {
-                return Ok(rating);
-            }
+            //if (User.HasClaim("user_roles", "apiAdmin"))
+            //{
+            //    return Ok(rating);
+            //}
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var ratingUser = rating.Where(w => w.UserId == userId);
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var ratingUser = rating.Where(w => w.UserId == userId);
 
-            return Ok(ratingUser);
+            return Ok(rating);
         }
 
         [HttpPost]

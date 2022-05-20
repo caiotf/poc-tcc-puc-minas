@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -25,25 +24,24 @@ namespace GSL.ProductAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Authorize(Policy = "ApiUser")]
+        //[Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<IEnumerable<ProductVO>>> FindAll()
         {
             var products = await _repository.FindAll();
 
-            if (User.HasClaim("user_roles", "apiAdmin"))
-            {
-                return Ok(products.OrderBy(o => o.Customer));
-            }
+            //if (User.HasClaim("user_roles", "apiAdmin"))
+            //{
+            //    return Ok(products.OrderBy(o => o.Customer));
+            //}
 
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            var userName = identity.FindFirst("name").Value;
-            var productsUser = products.Where(w => w.Customer == userName).OrderBy(o => o.Customer);
+            //var identity = HttpContext.User.Identity as ClaimsIdentity;
+            //var userName = identity.FindFirst("name").Value;
+            //var productsUser = products.Where(w => w.Customer == userName).OrderBy(o => o.Customer);
 
-            return Ok(productsUser);
+            return Ok(products);
         }
 
         [HttpGet("{id}")]
-        [AllowAnonymous]
         [Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<ProductVO>> FindById(long id)
         {

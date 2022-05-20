@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GSL.RatingAPI.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20220403224219_RemoveColumnRatingTable")]
-    partial class RemoveColumnRatingTable
+    [Migration("20220519003914_MigracaoInicial")]
+    partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

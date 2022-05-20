@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSL.RatingAPI", "GSL.Rating
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{2538FECE-9B88-4E8B-9EC1-C320234393F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSL.APIGateway", "GSL.APIGateway\GSL.APIGateway.csproj", "{1F934B57-30E2-4128-9A8D-9B86909EBE52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSL.APIGateway", "GSL.APIGateway\GSL.APIGateway.csproj", "{1F934B57-30E2-4128-9A8D-9B86909EBE52}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BEEA08C3-B3A8-442C-90FF-97D29164CCDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1F934B57-30E2-4128-9A8D-9B86909EBE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F934B57-30E2-4128-9A8D-9B86909EBE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F934B57-30E2-4128-9A8D-9B86909EBE52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEA08C3-B3A8-442C-90FF-97D29164CCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEA08C3-B3A8-442C-90FF-97D29164CCDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEA08C3-B3A8-442C-90FF-97D29164CCDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEA08C3-B3A8-442C-90FF-97D29164CCDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GSL.RatingAPI.Migrations
 {
@@ -13,10 +14,12 @@ namespace GSL.RatingAPI.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AgilidadeNaEntrega = table.Column<int>(type: "int", nullable: false),
-                    Transparencia = table.Column<int>(type: "int", nullable: false),
                     BoaComunicacao = table.Column<int>(type: "int", nullable: false),
                     CuidadoComMercadoria = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DataAvalicao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
