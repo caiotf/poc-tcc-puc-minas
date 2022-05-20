@@ -6,8 +6,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 24989
+          "Host": "gslproductapi",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/gateway/product",
@@ -19,8 +19,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 24989
+          "Host": "gslproductapi",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/gateway/product/{id}",
@@ -33,8 +33,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 36219
+          "Host": "gslratingapi",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/gateway/rating",
@@ -46,8 +46,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 36219
+          "Host": "gslratingapi",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/gateway/rating/{id}",
@@ -62,7 +62,7 @@
         {
           "Name": "Gateway - Product API",
           "Version": "v1",
-          "Url": "http://localhost:24989/swagger/v1/swagger.json"
+          "Url": "http://gslproductapi:80/swagger/v1/swagger.json"
         }
       ]
     },
@@ -72,7 +72,7 @@
         {
           "Name": "Gateway - Rating API",
           "Version": "v1",
-          "Url": "http://localhost:36219/swagger/v1/swagger.json"
+          "Url": "http://gslratingapi:80/swagger/v1/swagger.json"
         }
       ]
     }

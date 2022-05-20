@@ -4,9 +4,17 @@ services:
   gsl.productapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
-      - DB_ENDPOINT=database
+      - DB_ENDPOINT=mssql
       - DB_MIGRATE=true
       - DB_INITIALIZE=true  
-    ports:
-      - "80"
+
+  gsl.ratingapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB_ENDPOINT=mssql
+      - DB_MIGRATE=true
+      - DB_INITIALIZE=true 
+
+  gsl.apigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

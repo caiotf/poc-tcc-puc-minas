@@ -6,20 +6,92 @@ services:
     build:
       context: .
       dockerfile: GSL.ProductAPI/Dockerfile
+    container_name: gslproductapi
+    networks:
+      - gsl-network
     ports:
-      - "30565:80" 
+      - "5555:80" 
     depends_on:
-      - database
+      - mssql
+      - keycloak
 
-  database:
+  gsl.ratingapi:
+    image: ${DOCKER_REGISTRY-}gslratingapi
+    build:
+      context: .
+      dockerfile: GSL.RatingAPI/Dockerfile
+    container_name: gslratingapi
+    networks:
+      - gsl-network
+    ports:
+      - "4444:80" 
+    depends_on:
+      - mssql
+      - keycloak
+
+  gsl.apigateway:
+    image: ${DOCKER_REGISTRY-}gslapigateway
+    build:
+      context: .
+      dockerfile: GSL.APIGateway/Dockerfile
+    container_name: gslapigateway
+    networks:
+      - gsl-network
+    ports:
+      - "7777:80" 
+    depends_on:
+      - gslproductapi
+      - gslratingapi
+
+  mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: webapidb
+    container_name: mssql
+    networks:
+      - gsl-network
     ports:
       - 1433:1433
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "saLocal0"
     volumes:
-      - sqlsystem:/var/opt/mssql/
+      - sqlserver:/var/opt/mssql/
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    networks:
+        - gsl-network
+    environment:
+        - MYSQL_DATABASE=keycloak
+        - MYSQL_USER=keycloak
+        - MYSQL_PASSWORD=password
+        - MYSQL_ROOT_PASSWORD=root_password
+    ports:
+        - 3306:3306
+    volumes:
+        - mysql:/var/opt/mssql/    
+
+  keycloak:
+    image: jboss/keycloak
+    container_name: keycloak
+    networks:
+        - gsl-network
+    environment:
+        - KEYCLOAK_USER=admin
+        - KEYCLOAK_PASSWORD=admin
+        - DB_VENDOR=mysql
+        - DB_ADDR=mysql
+        - DB_PORT=3306
+    ports:
+        - 8080:8080
+    depends_on:
+        - mysql
+
 volumes:
-  sqlsystem:
+  mysql:   
+  sqlserver:
+
+networks:
+    gsl-network:
+        driver: bridge  
+

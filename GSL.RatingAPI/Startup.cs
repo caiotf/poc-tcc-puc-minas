@@ -1,6 +1,7 @@
 using AutoMapper;
 using GSL.RatingAPI.Config;
 using GSL.RatingAPI.Model.Context;
+using GSL.RatingAPI.Model.Context.Data;
 using GSL.RatingAPI.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +32,8 @@ namespace GSL.RatingAPI
         {
             var connection = Configuration["SqlServerConnection:SqlServerConnectionString"];
 
-            services.AddDbContext<SqlServerContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<SqlServerContext>(options => options.UseSqlServer(Configuration["SqlServerConnection:SqlServerConnectionString"]
+                .Replace("{{DB_ENDPOINT}}", Configuration.GetValue<string>("DB_ENDPOINT"))));
 
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
             services.AddSingleton(mapper);
@@ -115,6 +117,8 @@ namespace GSL.RatingAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            UpdateDatabase(app);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -132,6 +136,23 @@ namespace GSL.RatingAPI
             {
                 endpoints.MapControllers();
             });
+        }
+
+        // Executa migrations e inicializa o db no container com sql-server
+        public void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                using (var _context = serviceScope.ServiceProvider.GetService<SqlServerContext>())
+                {
+
+                    if (Configuration.GetValue<bool>("DB_MIGRATE") == true)
+                        _context.Database.Migrate();
+
+                    if (Configuration.GetValue<bool>("DB_INITIALIZE") == true)
+                        DbInitializer.Initialize(_context);
+                }
+            }
         }
     }
 }
