@@ -36,7 +36,7 @@ namespace GSL.ProductAPI.Model.Context.Data
                 new Product()
                 {
                         Name = "Liquidificador",
-                        Price = new decimal(85),
+                        Price = new decimal(75),
                         Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                         ImageURL = "",
                         CategoryName = "Eletro",
@@ -46,52 +46,52 @@ namespace GSL.ProductAPI.Model.Context.Data
                 new Product()
                 {
                         Name = "Liquidificador",
-                        Price = new decimal(64),
+                        Price = new decimal(75),
                         Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                         ImageURL = "",
                         CategoryName = "Eletro",
                         Customer = "Delta",
-                        Stock = 74
+                        Stock = 32
                 },
                 new Product()
                 {
                         Name = "IPhone",
-                        Price = new decimal(85),
+                        Price = new decimal(2800),
                         Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                         ImageURL = "",
                         CategoryName = "Telefonia",
                         Customer = "Delta",
-                        Stock = 74
+                        Stock = 54
                 },
                 new Product()
                 {
                         Name = "Moto G5",
-                        Price = new decimal(85),
+                        Price = new decimal(1100),
                         Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                         ImageURL = "",
                         CategoryName = "Telefonia",
                         Customer = "Alfa",
-                        Stock = 74
+                        Stock = 12
                 },
                 new Product()
                 {
                         Name = "Mesa",
-                        Price = new decimal(85),
+                        Price = new decimal(120),
                         Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                         ImageURL = "",
                         CategoryName = "Moveis",
                         Customer = "Beta",
-                        Stock = 74
+                        Stock = 21
                 },
                 new Product()
                 {
                         Name = "Guarda-roupa",
-                        Price = new decimal(85),
+                        Price = new decimal(225),
                         Description = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<br/>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.<br/>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
                         ImageURL = "",
                         CategoryName = "Moveis",
                         Customer = "Delta",
-                        Stock = 74
+                        Stock = 11
                 }
             };
 
