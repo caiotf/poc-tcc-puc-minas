@@ -24,7 +24,6 @@ namespace GSL.ProductAPI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<IEnumerable<ProductVO>>> FindAll()
         {
