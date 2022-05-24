@@ -29,9 +29,6 @@ namespace GSL.ProductAPI.Controllers
         public async Task<ActionResult<IEnumerable<ProductVO>>> FindAll()
         {
             var products = await _repository.FindAll();
-            var p1 = products.ElementAt(1).Price.ToString("C");
-            var p11 = products.ElementAt(1).Price.ToString("C2");
-            var p2 = products.ElementAt(2).Price.ToString();
 
             if (User.HasClaim("user_roles", "apiAdmin"))
             {
