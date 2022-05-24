@@ -1,5 +1,19 @@
 {
   "Routes": [
+    //ProductAPI
+    {
+      "SwaggerKey": "product",
+      "DownstreamPathTemplate": "/api/v1/product/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "gslproductapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
     {
       "SwaggerKey": "product",
       "DownstreamPathTemplate": "/api/v1/product",
@@ -11,7 +25,20 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/product",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "SwaggerKey": "product",
+      "DownstreamPathTemplate": "/api/v1/product",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "gslproductapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product",
+      "UpstreamHttpMethod": [ "POST", "PUT" ]
     },
     {
       "SwaggerKey": "product",
@@ -24,9 +51,22 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/product/{id}",
-      "UpstreamHttpMethod": [ "Get", "Delete" ]
+      "UpstreamHttpMethod": [ "DELETE" ]
     },
-
+    //RatingAPI
+    {
+      "SwaggerKey": "rating",
+      "DownstreamPathTemplate": "/api/v1/rating/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "gslratingapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/rating/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
     {
       "SwaggerKey": "rating",
       "DownstreamPathTemplate": "/api/v1/rating",
@@ -38,7 +78,20 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/rating",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "SwaggerKey": "rating",
+      "DownstreamPathTemplate": "/api/v1/rating",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "gslratingapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/rating",
+      "UpstreamHttpMethod": [ "POST", "PUT" ]
     },
     {
       "SwaggerKey": "rating",
@@ -51,9 +104,8 @@
         }
       ],
       "UpstreamPathTemplate": "/gateway/rating/{id}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "DELETE" ]
     }
-
   ],
   "SwaggerEndPoints": [
     {

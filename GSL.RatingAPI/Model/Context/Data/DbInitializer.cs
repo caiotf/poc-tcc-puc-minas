@@ -20,7 +20,7 @@ namespace GSL.RatingAPI.Model.Context.Data
                     BoaComunicacao = ERating.MuitoBom,
                     CuidadoComMercadoria = ERating.MuitoBom,
                     DataAvalicao = System.DateTime.Now,
-                    UserId = "1111",
+                    UserId = "41f2f3c2-5744-4190-9862-a11b21d113a5",
                     UserName = "Alfa",
                     UserEmail = "alfa@alfa.com"
 
@@ -31,7 +31,7 @@ namespace GSL.RatingAPI.Model.Context.Data
                     BoaComunicacao = ERating.MuitoBom,
                     CuidadoComMercadoria = ERating.Ruim,
                     DataAvalicao = System.DateTime.Now,
-                    UserId = "2222",
+                    UserId = "51a52c43-bb50-46f2-9f5c-c3a58642aaef",
                     UserName = "Alfa",
                     UserEmail = "alfa@alfa.com"
 
@@ -42,7 +42,7 @@ namespace GSL.RatingAPI.Model.Context.Data
                     BoaComunicacao = ERating.Ruim,
                     CuidadoComMercadoria = ERating.Bom,
                     DataAvalicao = System.DateTime.Now,
-                    UserId = "3333",
+                    UserId = "618acb52-37e6-460a-befe-b8bcee29ae5a",
                     UserName = "Beta",
                     UserEmail = "beta@alfa.com"
                 },

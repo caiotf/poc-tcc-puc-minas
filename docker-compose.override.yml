@@ -18,3 +18,7 @@ services:
   gsl.apigateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+
+  gsl.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

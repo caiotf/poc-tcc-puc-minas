@@ -1,6 +1,21 @@
 version: '3.4'
 
 services:
+  gsl.web:
+    image: ${DOCKER_REGISTRY-}gslweb
+    build:
+      context: .
+      dockerfile: GSL.Web/Dockerfile
+    container_name: gslweb
+    ports:
+      - "2222:80" 
+    networks:
+      - gslnetwork
+    depends_on:
+      - mssql
+      - keycloak
+    restart: on-failure
+
   gsl.productapi:
     image: ${DOCKER_REGISTRY-}gslproductapi
     build:
@@ -8,12 +23,13 @@ services:
       dockerfile: GSL.ProductAPI/Dockerfile
     container_name: gslproductapi
     networks:
-      - gsl-network
+      - gslnetwork
     ports:
       - "5555:80" 
     depends_on:
       - mssql
       - keycloak
+    restart: on-failure
 
   gsl.ratingapi:
     image: ${DOCKER_REGISTRY-}gslratingapi
@@ -22,12 +38,13 @@ services:
       dockerfile: GSL.RatingAPI/Dockerfile
     container_name: gslratingapi
     networks:
-      - gsl-network
+      - gslnetwork
     ports:
       - "4444:80" 
     depends_on:
       - mssql
       - keycloak
+    restart: on-failure
 
   gsl.apigateway:
     image: ${DOCKER_REGISTRY-}gslapigateway
@@ -36,31 +53,31 @@ services:
       dockerfile: GSL.APIGateway/Dockerfile
     container_name: gslapigateway
     networks:
-      - gsl-network
+      - gslnetwork
     ports:
       - "7777:80" 
     depends_on:
       - gslproductapi
       - gslratingapi
+    restart: on-failure
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: mssql
     networks:
-      - gsl-network
+      - gslnetwork
     ports:
       - 1433:1433
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "saLocal0"
-    volumes:
-      - sqlserver:/var/opt/mssql/
+    restart: always
 
   mysql:
     image: mysql
     container_name: mysql
     networks:
-        - gsl-network
+        - gslnetwork
     environment:
         - MYSQL_DATABASE=keycloak
         - MYSQL_USER=keycloak
@@ -68,17 +85,18 @@ services:
         - MYSQL_ROOT_PASSWORD=root_password
     ports:
         - 3306:3306
-    volumes:
-        - mysql:/var/opt/mssql/    
+    restart: always
 
   keycloak:
     image: jboss/keycloak
     container_name: keycloak
-    networks:
-        - gsl-network
+    volumes:
+      - ./imports:/opt/jboss/keycloak/imports
     environment:
+        - KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/realm-export.json -Dkeycloak.profile.feature.upload_scripts=enabled
         - KEYCLOAK_USER=admin
         - KEYCLOAK_PASSWORD=admin
+        - KEYCLOAK_FRONTEND_URL=http://localhost:8080/auth
         - DB_VENDOR=mysql
         - DB_ADDR=mysql
         - DB_PORT=3306
@@ -86,12 +104,9 @@ services:
         - 8080:8080
     depends_on:
         - mysql
-
-volumes:
-  mysql:   
-  sqlserver:
+    networks:
+        - gslnetwork
 
 networks:
-    gsl-network:
-        driver: bridge  
-
+    gslnetwork:
+        driver: bridge 

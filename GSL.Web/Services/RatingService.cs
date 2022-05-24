@@ -12,7 +12,7 @@ namespace GSL.Web.Services
     public class RatingService : IRatingService
     {
         private readonly HttpClient _client;
-        public const string BasePath = "api/v1/rating";
+        public const string BasePath = "gateway/rating";
 
         public RatingService(HttpClient client)
         {

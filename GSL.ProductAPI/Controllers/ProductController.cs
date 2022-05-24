@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -24,21 +25,24 @@ namespace GSL.ProductAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        //[Authorize(Policy = "ApiUser")]
+        [Authorize(Policy = "ApiUser")]
         public async Task<ActionResult<IEnumerable<ProductVO>>> FindAll()
         {
             var products = await _repository.FindAll();
+            var p1 = products.ElementAt(1).Price.ToString("C");
+            var p11 = products.ElementAt(1).Price.ToString("C2");
+            var p2 = products.ElementAt(2).Price.ToString();
 
-            //if (User.HasClaim("user_roles", "apiAdmin"))
-            //{
-            //    return Ok(products.OrderBy(o => o.Customer));
-            //}
+            if (User.HasClaim("user_roles", "apiAdmin"))
+            {
+                return Ok(products.OrderBy(o => o.Customer));
+            }
 
-            //var identity = HttpContext.User.Identity as ClaimsIdentity;
-            //var userName = identity.FindFirst("name").Value;
-            //var productsUser = products.Where(w => w.Customer == userName).OrderBy(o => o.Customer);
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var userName = identity.FindFirst("name").Value;
+            var productsUser = products.Where(w => w.Customer == userName).OrderBy(o => o.Customer);
 
-            return Ok(products);
+            return Ok(productsUser);
         }
 
         [HttpGet("{id}")]
