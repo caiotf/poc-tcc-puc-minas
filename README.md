@@ -13,7 +13,7 @@ Para executar a aplicação, siga os passos abaixo:
 
 2 - Navegue até a pasta `GSL_Publish_DockerHub`
 
-3 - Execute o comando `docker compose up -d`
+3 - Execute o comando `docker-compose up -d`
 
 4 - Acesse a aplicação no seu navegador através do endereço http://localhost:2222/Home/Index
 
