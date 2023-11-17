@@ -1,7 +1,7 @@
 
 # POC TCC PUC Minas
 
-Este repositório contém uma aplicação baseada em microsserviços desenvolvida na plataforma .NET e que roda no Docker. A aplicação possui um serviço de um portal Web que se comunica com um API Gateway que gerencia as requisições para duas APIs: uma para Produtos e outra para Avaliação.
+Neste repositório, encontra-se uma aplicação de microsserviços construída na plataforma .NET e executada através do Docker. Esta aplicação é composta por um serviço principal Web, o qual se conecta a um API Gateway responsável por orquestrar as requisições destinadas a duas APIs distintas: uma voltada para a gestão de Produtos e outra dedicada à Avaliação.
 
 ## Pré-requisitos
 Para executar a aplicação, você precisará ter o Docker instalado em sua máquina.
@@ -9,9 +9,9 @@ Para executar a aplicação, você precisará ter o Docker instalado em sua máq
 ## Executando a aplicação
 Para executar a aplicação, siga os passos abaixo:
 
-1 - Clone este repositório em sua máquina local
+1 - Clone o repositório em sua máquina local
 
-2 - Navegue até a pasta `GSL_Publish_DockerHub`
+2 - Navegue até o diretório `GSL_Publish_DockerHub`
 
 3 - Execute o comando `docker-compose up -d`
 
